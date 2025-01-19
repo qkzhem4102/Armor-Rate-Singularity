@@ -11,7 +11,7 @@
             margin-top: 50px;
         }
         .container {
-            width: 300px;
+            width: 400px; /* UI 가로 크기 넓힘 */
             margin: 0 auto;
             padding: 20px;
             border: 1px solid #ccc;
@@ -56,8 +56,8 @@
 <body>
     <div class="container">
         <h1>방어율 특이점 계산기</h1>
-        <p>스테이지와 세부 스테이지 값을 입력하세요.</p>
-        <input type="number" id="stage" placeholder="현재 스테이지 (예: 200)" oninput="validateInput(this)">
+        <p>스테이지(앞쪽 스테이지)와 세부 스테이지(뒤쪽 스테이지) 값을 입력하세요.</p>
+        <input type="number" id="stage" placeholder="스테이지 (예: 200)" oninput="validateInput(this)">
         <input type="number" id="subStage" placeholder="세부 스테이지 (예: 48)" oninput="validateInput(this)">
         <button onclick="calculate()">계산하기</button>
         <div class="result" id="result"></div>
@@ -78,8 +78,19 @@
                 return;
             }
 
-            const calculation = stage * 11.1 + 97.2 + (subStage - 1) * 0.111;
-            const result = Math.ceil(calculation * 100) / 100; // 소수점 둘째 자리 올림
+            let calculation;
+
+            if (stage < 190) {
+                // 190 미만일 경우 보정 항을 추가한 계산식 사용
+                const correctionFactor = 0.02 * (stage - 190);
+                calculation = stage * 11.1 + 97.2 + (subStage - 1) * 0.111 + correctionFactor;
+            } else {
+                // 190 이상일 경우 기존 계산식 사용
+                calculation = stage * 11.1 + 97.2 + (subStage - 1) * 0.111;
+            }
+
+            // 소수점 둘째 자리 올림
+            const result = Math.ceil(calculation * 100) / 100;
             document.getElementById('result').innerText = 
                 `${stage}-${subStage}에서의 방어율 특이점은 ${result}% 입니다.`;
         }
