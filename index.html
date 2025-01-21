@@ -56,51 +56,38 @@
 <body>
     <div class="container">
         <h1>방어율 특이점 계산기</h1>
-        <p>방어율 값을 입력하세요.</p>
-        <input type="number" id="targetDefense" placeholder="방어율 (예: 6548.27)" step="0.01" min="0">
-        <button onclick="calculateStage()">계산하기</button>
+        <p>스테이지와 세부 스테이지 값을 입력하세요.</p>
+        <input type="number" id="stage" placeholder="스테이지 (예: 200-48 -> 200)" oninput="validateStage(this)">
+        <input type="number" id="subStage" placeholder="세부 스테이지 (200-48 -> 48)" oninput="validateSubStage(this)">
+        <button onclick="calculate()">계산하기</button>
         <div class="result" id="result"></div>
     </div>
 
     <script>
-        function calculateStage() {
-            const targetDefense = parseFloat(document.getElementById('targetDefense').value);
+        function validateSubStage(input) {
+            if (input.value > 100) input.value = 100;
+        }
 
-            if (isNaN(targetDefense) || targetDefense <= 0) {
-                alert('올바른 방어율 값을 입력하세요. (0보다 큰 숫자)');
+        function calculate() {
+            const stage = parseFloat(document.getElementById('stage').value);
+            const subStage = parseFloat(document.getElementById('subStage').value);
+
+            if (isNaN(stage) || isNaN(subStage) || stage <= 0 || subStage <= 0) {
+                alert('올바른 값을 입력하세요. (스테이지는 1 이상, 세부 스테이지는 1~100 사이)');
                 return;
             }
 
-            let stage = 1;
-            let subStage = 1;
-            let found = false;
+            let calculation = stage * 11.1 + 95.1 + (subStage - 1) * 0.111;
 
-            for (let s = 1; s <= 1000; s++) {
-                for (let ss = 1; ss <= 100; ss++) {
-                    let calculation = s * 11.1 + 95.1 + (ss - 1) * 0.111;
-
-                    if (s % 9 === 0) {
-                        calculation += (Math.floor(s / 9) - 1) / 10;
-                    } else {
-                        calculation += Math.floor(s / 9) / 10;
-                    }
-
-                    if (calculation >= targetDefense) {
-                        stage = s;
-                        subStage = ss;
-                        found = true;
-                        break;
-                    }
-                }
-                if (found) break;
-            }
-
-            if (!found) {
-                document.getElementById('result').innerText = `방어율 ${targetDefense}%에 해당하는 스테이지를 찾을 수 없습니다.`;
+            if (stage % 9 === 0) {
+                calculation += (Math.floor(stage / 9) - 1) / 10;
             } else {
-                document.getElementById('result').innerText = 
-                    `방어율 ${targetDefense}%에서 특이점은 스테이지 ${stage}-${subStage}에서 적용됩니다.`;
+                calculation += Math.floor(stage / 9) / 10;
             }
+
+            const result = Math.round(calculation * 100) / 100;
+            document.getElementById('result').innerText = 
+                `${stage}-${subStage}에서의 방어율 특이점은 ${result}% 입니다.`;
         }
     </script>
 </body>
