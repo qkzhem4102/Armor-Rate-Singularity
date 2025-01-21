@@ -57,8 +57,8 @@
     <div class="container">
         <h1>방어율 특이점 계산기</h1>
         <p>스테이지와 세부 스테이지 값을 입력하세요.</p>
-        <input type="number" id="stage" placeholder="스테이지 (예: 35)" oninput="validateStage(this)">
-        <input type="number" id="subStage" placeholder="세부 스테이지 (1~100)" oninput="validateSubStage(this)">
+        <input type="number" id="stage" placeholder="스테이지 (예: 200-48 -> 200)" oninput="validateStage(this)">
+        <input type="number" id="subStage" placeholder="세부 스테이지 (200-48 -> 48)" oninput="validateSubStage(this)">
         <button onclick="calculate()">계산하기</button>
         <div class="result" id="result"></div>
     </div>
