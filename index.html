@@ -9,14 +9,16 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
+            background-color: #f9f9f9;
         }
         .container {
             width: 400px;
-            margin: 0 auto;
+            margin: 0 auto 40px;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
         }
         input {
             width: 100%;
@@ -51,16 +53,51 @@
             font-size: 1.2em;
             font-weight: bold;
         }
+        img {
+            width: 100%;
+            max-width: 100%;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 1px 1px 6px rgba(0,0,0,0.1);
+        }
+        .explanation {
+            text-align: left;
+            font-size: 0.9em;
+            color: #444;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
+
+    <!-- 입력 영역 -->
     <div class="container">
         <h1>방어율 특이점 계산기</h1>
+
+        <!-- 스테이지 예시 이미지 -->
+        <img src="스테이지_값.jpg" alt="스테이지 예시 이미지">
+
         <p>스테이지와 세부 스테이지 값을 입력하세요.</p>
         <input type="number" id="stage" placeholder="스테이지 (예: 200-48 -> 200)" oninput="validateStage(this)">
         <input type="number" id="subStage" placeholder="세부 스테이지 (200-48 -> 48)" oninput="validateSubStage(this)">
         <button onclick="calculate()">계산하기</button>
         <div class="result" id="result"></div>
+    </div>
+
+    <!-- 설명 영역 -->
+    <div class="container">
+        <h2>방어율 특이점이란?</h2>
+        <p style="font-size: 0.95em; color: #555;">
+            현재 스테이지에서<br>
+            <strong>대미지 무시가 가능해지는 방어율의 최솟값</strong><br>
+            을 의미합니다.
+        </p>
+        <img src="방어율_특이점_설명.jpg" alt="방어율 특이점 설명 이미지">
+        <p class="explanation">
+            방어율 특이점은 스테이지마다 모두 다릅니다.<br> 
+            방어율 특이점을 달성하거나 초과하면 해당 스테이지의 적으로부터 받는 대미지를 완전히 무시하게 됩니다.<br>
+            따라서 방어율 특이점보다 방어율이 높으면 생존률이 급격히 향상됩니다.
+        </p>
     </div>
 
     <script>
