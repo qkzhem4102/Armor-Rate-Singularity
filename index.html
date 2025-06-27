@@ -54,9 +54,7 @@
             font-weight: bold;
         }
         img {
-            width: 100%;
-            max-width: 100%;
-            margin: 20px 0;
+            margin: 20px auto;
             border-radius: 10px;
             box-shadow: 1px 1px 6px rgba(0,0,0,0.1);
         }
@@ -73,13 +71,14 @@
     <!-- 입력 영역 -->
     <div class="container">
         <h1>방어율 특이점 계산기</h1>
-
-        <!-- 스테이지 예시 이미지 -->
-        <img src="스테이지_값.jpg" alt="스테이지 예시 이미지">
-
         <p>스테이지와 세부 스테이지 값을 입력하세요.</p>
-        <input type="number" id="stage" placeholder="스테이지 (예: 200-48 -> 200)" oninput="validateStage(this)">
-        <input type="number" id="subStage" placeholder="세부 스테이지 (200-48 -> 48)" oninput="validateSubStage(this)">
+
+        <!-- 이미지 (50% 크기) -->
+        <img src="스테이지_값.jpg" alt="스테이지 예시 이미지" style="width: 50%; height: auto;">
+
+        <!-- 입력 폼 -->
+        <input type="number" id="stage" placeholder="스테이지 (예: 1017-20 -> 1017)" oninput="validateStage(this)">
+        <input type="number" id="subStage" placeholder="세부 스테이지 (예: 1017-20 -> 20)" oninput="validateSubStage(this)">
         <button onclick="calculate()">계산하기</button>
         <div class="result" id="result"></div>
     </div>
@@ -92,7 +91,7 @@
             <strong>대미지 무시가 가능해지는 방어율의 최솟값</strong><br>
             을 의미합니다.
         </p>
-        <img src="방어율_특이점_설명.jpg" alt="방어율 특이점 설명 이미지">
+        <img src="방어율_특이점_설명.jpg" alt="방어율 특이점 설명 이미지" style="width: 100%; max-width: 100%;">
         <p class="explanation">
             방어율 특이점은 스테이지마다 모두 다릅니다.<br> 
             방어율 특이점을 달성하거나 초과하면 해당 스테이지의 적으로부터 받는 대미지를 완전히 무시하게 됩니다.<br>
