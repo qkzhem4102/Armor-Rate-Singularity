@@ -42,6 +42,13 @@
       margin: 10px 0;
     }
 
+    .sub-text {
+      font-size: 1em;
+      color: #888;
+      margin-top: -5px;
+      margin-bottom: 15px;
+    }
+
     img {
       max-width: 100%;
       height: auto;
@@ -109,6 +116,7 @@
   <div class="container">
     <h1>방어율 특이점 계산기</h1>
     <p>스테이지와 세부 스테이지 값을 입력하세요.</p>
+    <p class="sub-text">넣어줬으면 하는 설명이나 수정사항 있으면 카페 댓글에 적어주세요!</p>
     <img src="스테이지_값.jpg" alt="스테이지 예시 이미지" style="width: 50%; max-width: 250px;" />
     <input type="number" id="stage" placeholder="스테이지 (예: 1017-20 → 1017)" />
     <input type="number" id="subStage" placeholder="세부 스테이지 (예: 1017-20 → 20)" />
@@ -120,16 +128,16 @@
   <div class="container">
     <h2>방어율 특이점이란?</h2>
     <p>
-      현재 스테이지에서<br />
-      <strong>대미지 무시가 가능해지는 방어율의 최솟값</strong><br />
+      현재 스테이지에서<br>
+      <strong>대미지 무시가 가능해지는 방어율의 최솟값</strong><br>
       을 의미합니다.
     </p>
     <img src="방어율_특이점_설명.jpg" alt="방어율 특이점 설명 이미지" />
     <p class="explanation">
-      • 방어율 특이점은 스테이지마다 모두 다릅니다.<br />
+      • 방어율 특이점은 스테이지마다 모두 다릅니다.<br>
       • 방어율 특이점을 달성하거나 초과하면 해당 스테이지의 적으로부터 받는
-      대미지를 완전히 무시하게 됩니다.<br />
-      • 따라서 방어율 특이점보다 방어율이 높으면 생존률이 급격히 올라갑니다.<br />
+      대미지를 완전히 무시하게 됩니다.<br>
+      • 따라서 방어율 특이점보다 방어율이 높으면 생존률이 급격히 올라갑니다.<br>
       • 방어율 특이점을 달성하면 대미지가 들어오지 않기 때문에, 균형의 선각자에서 
       질서와 혼돈 중 혼돈으로 설정해도 캐릭터가 죽지 않습니다.
     </p>
